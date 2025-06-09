@@ -1,0 +1,77 @@
+/* 전역 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #d3f3ff;
+    color: #333;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+    text-align: center;
+    background-color: #222;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* ───── 픽셀 뒤로가기 버튼 ───── */
+.pixel-back{
+    position:absolute; top:16px; left:16px;       /* 원하는 위치 */
+    width:72px; height:48px;                      /* 버튼 클릭 범위 */
+    background:transparent; border:none; cursor:pointer;
+    padding:0; outline:none; z-index:5;
+}
+
+/* ★ 화살표 본체 */
+.pixel-back::before{
+    content:'';
+    position:absolute;
+    top:18px; left:30px;          /* 기준 픽셀 (꼬리 시작) */
+    width:6px; height:6px;
+    background:#ffffff;           /* 화살표 색 */
+    image-rendering:pixelated;
+
+    /* ─ 박스-섀도로 픽셀모양 그리기 ─ */
+    /* ① 머리 부분 */
+    box-shadow:
+        /* 살짝 위쪽 계단 */
+            -6px -12px #ffffff,
+            0  -12px #ffffff,
+            -6px  -6px #ffffff,
+            -12px  -6px #ffffff,
+            -12px   0 #ffffff,
+            -12px   6px #ffffff,
+            -6px   6px #ffffff,
+            -6px  12px #ffffff,
+            0    12px #ffffff,
+                /* 화살표 뾰족 부분 */
+            -18px   0 #ffffff,
+                /* ② 꼬리(가로 바) */
+            6px   0 #ffffff, 12px  0 #ffffff, 18px  0 #ffffff,
+            24px   0 #ffffff, 30px  0 #ffffff, 36px  0 #ffffff,
+            42px   0 #ffffff, 48px  0 #ffffff, 54px  0 #ffffff;
+    /* 회색 그림자 한 번에 (pixel 느낌 유지) */
+    filter: drop-shadow(4px 4px 0 #8e8e8e);
+}
+
+/* Hover 시 강조 */
+.pixel-back:hover::before{
+    background:#ffe94d;
+    box-shadow:
+            -6px -12px #ffe94d, 0 -12px #ffe94d, -6px -6px #ffe94d,
+            -12px -6px #ffe94d, -12px 0 #ffe94d, -12px 6px #ffe94d,
+            -6px 6px #ffe94d, -6px 12px #ffe94d, 0 12px #ffe94d,
+            -18px 0 #ffe94d,
+            6px 0 #ffe94d, 12px 0 #ffe94d, 18px 0 #ffe94d,
+            24px 0 #ffe94d, 30px 0 #ffe94d, 36px 0 #ffe94d,
+            42px 0 #ffe94d, 48px 0 #ffe94d, 54px 0 #ffe94d;
+    filter: drop-shadow(4px 4px 0 #c8c864);
+}

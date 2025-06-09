@@ -1,0 +1,106 @@
+/* 전체 우주 – 스크롤 막고, 태양계 배경 */
+.universe-noscroll{
+    width:100vw; height:100vh;
+    overflow:hidden;                 /* 스크롤 제거 */
+    position:relative;
+    background:radial-gradient(circle at center,#000015 0%,#000 100%),
+    url('https://i.imgur.com/HXb2lq6.png') center/cover;
+    font-family:'Press Start 2P',cursive;
+}
+
+/* 별(책) 기본 상태  */
+.star-box{
+    position:absolute;
+    transform:translate(-50%,-50%);
+    cursor:pointer;
+    transition:transform .6s ease-out;
+}
+/* 🌟 책별 */
+.star-shape{
+    width:16px;height:16px;
+    background:#fff;
+    clip-path:polygon(
+            50% 0%, 61% 38%, 100% 38%,
+            68% 62%, 79% 100%, 50% 78%,
+            21% 100%, 32% 62%, 0% 38%, 39% 38%);
+    animation:twinkle 2.2s infinite ease-in-out;
+    transition:opacity .6s,transform .6s;
+    opacity:.6;
+}
+.star-box.active .star-shape{transform:scale(1.6);opacity:1}
+
+
+/* 반짝임 애니메이션 그대로 사용 */
+@keyframes twinkle{
+    0%,100%{ opacity:.3; }
+    50%    { opacity:1; }
+}
+
+.card{
+    position:absolute;
+    top:160%;                     /* ⭐ 로부터 충분히 아래 */
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    width:180px;
+    padding:12px 16px;
+    background:rgba(0,0,0,.8);
+    border:1px solid #666;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.4);
+    color:#fff;
+    font-size:9.5px;
+    line-height:1.4;
+    text-align:center;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .6s,transform .6s;
+}
+
+/* └── 꼬리(삼각형) */
+.card::before{
+    content:'';
+    position:absolute;
+    top:-6px;
+    left:50%;
+    transform:translateX(-50%);
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:6px solid rgba(0,0,0,.8);
+}
+
+/* ☆ 활성화 시 카드 올라오며 페이드-인 */
+.star-box.active .card{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+.card .date{font-size:.6rem;color:#bbb;margin-top:4px}
+
+
+
+
+@keyframes twinkle{
+    0%,100%{opacity:.4}
+    50%{opacity:1}
+}
+
+
+
+.star-box.active .star-shape{
+    opacity:1;
+}
+
+
+/* ▶ 배경 tiny star */
+.bg-star{
+    position:absolute;
+    width:4px;               /* 더 작게 = 2~4px */
+    height:4px;
+    border-radius:50%;
+    background:#ffffffb0;    /* 약간 투명 흰색 */
+    animation: bgTwinkle 3s infinite ease-in-out;
+}
+
+@keyframes bgTwinkle{
+    0%,100%{ opacity:.2; transform:scale(.8); }
+    50%    { opacity:.8; transform:scale(1);  }
+}

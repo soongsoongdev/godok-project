@@ -1,0 +1,147 @@
+/* ─────────────────────────────────────────────
+   Altitude View — 픽셀 스타일 & 단계별 배경
+   ───────────────────────────────────────────── */
+
+/* 1. 컨테이너 및 배경 그라데이션 */
+.altitude-container{
+    width:100vw;height:100vh;overflow:hidden;
+    position:relative;display:flex;justify-content:center;align-items:center;
+    font-family:'Press Start 2P',cursive;
+    transition:background 4s ease-in-out;
+    background:linear-gradient(to top,#6b8e23,#87ceeb);   /* 기본 ground */
+}
+.ground {background:linear-gradient(to top,#4d663e,#b5dcb0);}
+.cloud  {background:linear-gradient(to top,#b5dcb0,#e6f2f8);}
+.aurora {background:linear-gradient(to top,#e6f2f8,#334466);}
+.space  {background:linear-gradient(to top,#222,#000);}
+.solar  {background:radial-gradient(circle at center,#ffcc00,#111);
+    animation:solarPulse 10s infinite alternate;}
+@keyframes solarPulse{0%{filter:brightness(1);}100%{filter:brightness(1.1);}}
+
+/* 2. 고도 박스 */
+.altitude-box{
+    background:rgba(0,0,0,.6);
+    border:2px solid #fff;
+    box-shadow:4px 4px 0 #333;
+    padding:24px;text-align:center;color:#fff;z-index:2;
+}
+.altitude-label{font-size:12px;color:#ccc;margin-bottom:10px;}
+.altitude-value{font-size:24px;font-weight:bold;}
+
+/* 3. 페이드 등장 공통 */
+.fadeItem{opacity:0;transform:translateY(12px);
+    transition:opacity .8s ease-out,transform .8s ease-out;}
+.show    {opacity:1;transform:translateY(0);}
+
+/* 4. 픽셀 구름 */
+.pixel-cloud{
+    position:absolute;width:30px;height:30px;background:#fff;
+    box-shadow:32px 0 #fff,64px 0 #fff,16px -16px #fff,
+    48px -16px #fff,0 16px #fff;
+    animation:float 6s ease-in-out infinite;opacity:.9;z-index:1;
+}
+@keyframes float{0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}}
+
+/* 5. 들판 (ground) */
+.grass-ground{
+    position:absolute;bottom:0;width:100%;height:120px;
+    background:#3a6b2f;border-top:2px solid #1d3b0b;
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.3);z-index:0;
+}
+
+/* 6. 픽셀 하우스 */
+.pixel-house{
+    position:absolute;bottom:0;transform:translateY(-100%);
+    width:64px;height:48px;background:#964B00;z-index:2;
+    box-shadow:0 -48px #f00,-16px -48px #f00,16px -48px #f00;
+}
+
+/* 7. 픽셀 큰 나무 */
+.pixel-tree-big{
+    position:absolute;bottom:0;width:24px;height:96px;background:#8b4513;
+    animation:swayBig 4s ease-in-out infinite;z-index:2;
+}
+.pixel-tree-big::before{
+    content:'';position:absolute;bottom:96px;left:-48px;width:24px;height:24px;
+    background:#228b22;
+    box-shadow:24px 0 #2e8b57,48px 0 #3cb371,72px 0 #228b22,
+    0 -24px #3cb371,24px -24px #2e8b57,48px -24px #228b22,
+    72px -24px #3cb371,24px -48px #2e8b57,48px -48px #228b22;
+}
+@keyframes swayBig{0%{transform:rotate(0);}50%{transform:rotate(2.5deg);}100%{transform:rotate(0);}}
+
+/* 8. 꽃·잡초·캐릭터 */
+.pixel-flower{
+    position:absolute;bottom:0;transform:translateY(-100%);
+    width:10px;height:10px;border-radius:50%;background:#ff69b4;z-index:2;
+    box-shadow:6px 0 #ff69b4,-6px 0 #ff69b4,0 6px #ff69b4,0 -6px #ff69b4,
+    0 0 0 3px #228b22;
+}
+.pixel-weed{
+    position:absolute;bottom:0;transform:translateY(-100%);
+    width:6px;height:16px;background:#006400;border-radius:2px;z-index:2;
+    box-shadow:3px -6px #006400,-3px -6px #006400;
+}
+.pixel-character{
+    position:absolute;bottom:0;transform:translateY(-100%);
+    width:14px;height:28px;background:#ffe0bd;border:1px solid #333;z-index:3;
+    box-shadow:0 14px #1e90ff,0 28px #000;
+}
+
+/* 9. 픽셀 산(필요 시 사용) */
+.pixel-mountain{
+    position:absolute;bottom:0;width:8px;height:8px;background:#1d3b0b;
+    image-rendering:pixelated;
+    box-shadow:
+            0 0 #1d3b0b,
+            -8px -8px #1d3b0b,  8px -8px #3a6b2f,
+            -16px -16px #1d3b0b,  0 -16px #1d3b0b, 16px -16px #3a6b2f,
+            -24px -24px #1d3b0b, -8px -24px #1d3b0b, 8px -24px #3a6b2f, 24px -24px #3a6b2f,
+            -32px -32px #1d3b0b,-16px -32px #1d3b0b, 0 -32px #1d3b0b,16px -32px #3a6b2f,32px -32px #3a6b2f,
+            -40px -40px #1d3b0b,-24px -40px #1d3b0b,-8px -40px #1d3b0b,8px -40px #3a6b2f,24px -40px #3a6b2f,40px -40px #3a6b2f;
+}
+
+/*10. 픽셀 별·위성·행성 */
+.pixel-star{
+    position:absolute;width:3px;height:3px;background:#fff;opacity:.8;z-index:1;
+    animation:twinkle 2s infinite ease-in-out;
+}
+@keyframes twinkle{0%,100%{opacity:.3;}50%{opacity:1;}}
+.pixel-satellite{
+    position:absolute;width:12px;height:12px;background:#aaa;z-index:1;
+    box-shadow:2px 0 #ccc,-2px 0 #ccc;animation:spin 6s linear infinite;
+}
+@keyframes spin{0%{transform:rotate(0);}100%{transform:rotate(360deg);}}
+.pixel-planet{
+    position:absolute;width:10px;height:10px;border-radius:50%;
+    background:#ffcc00;z-index:1;
+    box-shadow:14px 14px #00f,-12px -10px #f00;animation:orbit 12s linear infinite;
+}
+@keyframes orbit{0%{transform:rotate(0) translateX(40px) rotate(0);}
+    100%{transform:rotate(360deg) translateX(40px) rotate(-360deg);}}
+
+
+
+.polaris{
+    position:absolute;top:10%;left:50%;transform:translateX(-50%);
+    width:40px;height:40px;clip-path:polygon(50% 0, 61% 38%, 100% 38%, 68% 62%,
+79% 100%, 50% 78%, 21% 100%, 32% 62%,
+0 38%, 39% 38%);
+    background:#fff;filter:drop-shadow(0 0 6px #fff);
+    animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:translateX(-50%) scale(1);}
+    50%     {transform:translateX(-50%) scale(1.2);}}
+.beam{
+    position:absolute;top:22%;left:50%;transform:translateX(-50%);
+    width:6px;height:60vh;background:linear-gradient(to bottom,#fff0,#ffffff80);
+    animation:beam 3s linear infinite;
+}
+@keyframes beam{0%{opacity:.2;height:0;}50%{opacity:.8;height:60vh;}100%{opacity:.2;height:0;}}
+.aurora-layer{
+    position:absolute;inset:0;background:linear-gradient(120deg,#35c5ff30,#ff3ef730,#35c5ff30);
+    mix-blend-mode:screen;animation:aurora 10s linear infinite;
+}
+@keyframes aurora{0%{background-position:0 0;}100%{background-position:800px 0;}}

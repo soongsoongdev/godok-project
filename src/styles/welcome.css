@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #f0f0f0;
+    color: #111;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* 연회색 배경 */
+}
+
+.logo-text {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: #c0c0c0;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 80%;
+}
+
+.start-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    background-color: #000;
+    color: #fff;
+    padding: 12px 24px;
+    border: 4px solid #fff;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    background-color: #222;
+    border-color: #ccc;
+}
+
+.start-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    background-color: #000;
+    color: #fff;
+    padding: 12px 24px;
+    border: 4px solid #fff;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #333;       /* ✅ 픽셀 그림자 효과 */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s;
+}
+
+.start-button:hover {
+    transform: translateY(-2px);      /* ✅ 눌림 느낌 */
+    box-shadow: 6px 6px 0 #666;       /* ✅ hover 시 더 진하게 */
+    background-color: #111;
+    border-color: #ddd;
+}
+
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.start-button,
+.view-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    background-color: #000;
+    color: #fff;
+    padding: 12px 24px;
+    border: 4px solid #fff;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #333;
+    transition: transform 0.1s ease-in-out;
+}
+
+.start-button:hover,
+.view-button:hover {
+    transform: translateY(-2px);
+    background-color: #111;
+    box-shadow: 6px 6px 0 #666;
+}
+
+
+.welcome-container {
+    width: 100vw;
+    height: 100vh;              /* ✅ 전체 화면 높이 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #222;     /* 진한 배경색 */
+    position: relative;         /* 별들 위치 기준 */
+    overflow: hidden;
+    z-index: 1;
+
+}
+
+
+.star {
+    position: fixed;
+    z-index: 0;
+    width: 6px;
+    height: 6px;
+    background: #fff;              /* 흰색 별! */
+    border-radius: 50%;            /* ✅ 원형으로! */
+    box-shadow: 0 0 8px #fff;      /* ✨ 빛나는 효과 */
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out, drift 6s infinite alternate;
+    pointer-events: none;
+}
+
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.logo-text, .subtitle, .button-group {
+    z-index: 1;
+    position: relative; /* 요소 위로 띄우기 */
+}
+
+.universe-button {
+    margin-top: 10px;
+    background-color: #4b0082;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.universe-button:hover {
+    background-color: #6a0dad;
+}

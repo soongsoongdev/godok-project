@@ -1,0 +1,92 @@
+/* page-container에서 배경이 어두운 상태임을 가정 */
+.journey-title {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.record-item {
+    background-color: #333;            /* ✅ 어두운 박스 */
+    border: 3px solid #aaa;            /* ✅ 대비 있는 테두리 */
+    box-shadow: 4px 4px 0 #000;
+    padding: 16px;
+    color: #fff;                       /* ✅ 내부 텍스트 밝게 */
+}
+
+.record-item p {
+    font-size: 12px;
+    margin: 6px 0;
+    word-break: break-word;
+    color: #eee;                       /* ✅ 기본 텍스트 밝게 */
+}
+
+.title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.note {
+    font-style: italic;
+    color: #ccc;
+}
+
+.date {
+    text-align: right;
+    font-size: 10px;
+    color: #aaa;
+}
+
+.empty {
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+}
+.clear-btn{
+    font-family:'Press Start 2P',cursive;font-size:10px;
+    padding:8px 12px;margin-bottom:16px;cursor:pointer;border:none;
+    background:#c62828;color:#fff;box-shadow:4px 4px 0 #811;
+}
+.clear-btn:hover{background:#e53935;}
+
+.del-btn{
+    font-size:10px;padding:4px 10px;cursor:pointer;border:none;
+    background:#555;color:#fff;box-shadow:2px 2px 0 #222;margin-top:8px;
+}
+.del-btn:hover{background:#777;}
+
+.bookshelf{
+    display:flex;gap:6px;margin:20px auto 30px;
+    max-width:680px;justify-content:center;
+    padding:14px 18px;background:#4e342e;
+    border:3px solid #2e1c16;box-shadow:4px 4px 0 #000;
+    image-rendering:pixelated;
+}
+
+/* ── 세로 텍스트 스파인 ── */
+.book-spine{
+    position:relative;
+    width:16px;                     /* 살짝 두껍게 */
+    height:60px;
+    border:1px solid #000;
+    box-shadow:2px 2px 0 #000 inset;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;                /* 글자 넘치면 숨김 */
+}
+
+.spine-text{
+    writing-mode: vertical-rl;   /* 세로쓰기(위→아래) */
+    font-size: 8px;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+}
